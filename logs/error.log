@@ -1,0 +1,22 @@
+09-07 16:32:45:083 E org.apache.storm.daemon.supervisor.ReadClusterState(181) - Failed to Sync Supervisor
+java.lang.RuntimeException: java.lang.InterruptedException
+	at org.apache.storm.utils.Utils.wrapInRuntime(Utils.java:1531)
+	at org.apache.storm.zookeeper.Zookeeper.getChildren(Zookeeper.java:265)
+	at org.apache.storm.cluster.ZKStateStorage.get_children(ZKStateStorage.java:174)
+	at org.apache.storm.cluster.StormClusterStateImpl.assignments(StormClusterStateImpl.java:153)
+	at org.apache.storm.daemon.supervisor.ReadClusterState.run(ReadClusterState.java:126)
+	at org.apache.storm.event.EventManagerImp$1.run(EventManagerImp.java:54)
+Caused by: java.lang.InterruptedException
+	at java.lang.Object.wait(Native Method)
+	at java.lang.Object.wait(Object.java:502)
+	at org.apache.storm.shade.org.apache.zookeeper.ClientCnxn.submitRequest(ClientCnxn.java:1342)
+	at org.apache.storm.shade.org.apache.zookeeper.ZooKeeper.getChildren(ZooKeeper.java:1588)
+	at org.apache.storm.shade.org.apache.zookeeper.ZooKeeper.getChildren(ZooKeeper.java:1625)
+	at org.apache.storm.shade.org.apache.curator.framework.imps.GetChildrenBuilderImpl$3.call(GetChildrenBuilderImpl.java:226)
+	at org.apache.storm.shade.org.apache.curator.framework.imps.GetChildrenBuilderImpl$3.call(GetChildrenBuilderImpl.java:219)
+	at org.apache.storm.shade.org.apache.curator.RetryLoop.callWithRetry(RetryLoop.java:109)
+	at org.apache.storm.shade.org.apache.curator.framework.imps.GetChildrenBuilderImpl.pathInForeground(GetChildrenBuilderImpl.java:216)
+	at org.apache.storm.shade.org.apache.curator.framework.imps.GetChildrenBuilderImpl.forPath(GetChildrenBuilderImpl.java:207)
+	at org.apache.storm.shade.org.apache.curator.framework.imps.GetChildrenBuilderImpl.forPath(GetChildrenBuilderImpl.java:40)
+	at org.apache.storm.zookeeper.Zookeeper.getChildren(Zookeeper.java:260)
+	... 4 more

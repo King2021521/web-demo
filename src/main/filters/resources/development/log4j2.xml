@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" verbose="false" name="sdp_log"
+	monitorInterval="0" strict="false">
+	<properties>
+		<property name="patternLayout">%d{MM-dd HH:mm:ss:SSS} %-1p{length=1} %c{36}(%L)-%m%n%throwable{full}</property>
+		<property name="debugFileName">logs/debug.log</property>
+		<property name="errorFileName">logs/error.log</property>
+		<property name="debugFilenamePattern">logs/$${date:yyyy-MM}/debug-%d{yyyy-MM-dd}-%i.log.gz</property>
+		<property name="errorFilenamePattern">logs/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz</property>
+	</properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${patternLayout}" />
+		</Console>
+		<RollingRandomAccessFile name="debugRollingRandomAccessFile"
+			fileName="${debugFileName}" filePattern="${debugFilenamePattern}">
+			<PatternLayout>
+				<Pattern>${patternLayout}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy interval="24"
+					modulate="true" />
+				<SizeBasedTriggeringPolicy size="50MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="100" fileIndex="max"
+				min="1" compressionLevel="0" />
+		</RollingRandomAccessFile>
+		<RollingRandomAccessFile name="errorRollingRandomAccessFile"
+			fileName="${errorFileName}" filePattern="${errorFilenamePattern}">
+			<PatternLayout>
+				<Pattern>${patternLayout}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy interval="24"
+					modulate="true" />
+				<SizeBasedTriggeringPolicy size="50MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="1000"
+				fileIndex="max" min="1" compressionLevel="0" />
+			<Filters>
+				<ThresholdFilter level="error" onMatch="ACCEPT"
+					onMismatch="DENY" />
+			</Filters>
+		</RollingRandomAccessFile>
+
+		
+
+	</Appenders>
+
+	<Loggers>
+		<Logger name="com.nd.api.controller.portal" level="info" additivity="true">
+            <AppenderRef ref="eventLogger" />
+        </Logger>
+        <Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="debugRollingRandomAccessFile" />
+			<AppenderRef ref="errorRollingRandomAccessFile" />
+		</Root>
+	</Loggers>
+</Configuration>
+
