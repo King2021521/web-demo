@@ -6,7 +6,17 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{AppConfig.class, WebRedisConfig.class, WebSecurityConfig.class, WebMybatisConfig.class, WebMongoConfig.class, WebRabbitAmqpConfig.class, SpringBatchConfig.class, WebQuartzConfig.class,WebElasticsearchConfig.class};
+        return new Class[]{AppConfig.class,
+                WebRedisConfig.class,
+                WebSecurityConfig.class,
+                WebMybatisConfig.class,
+                WebMongoConfig.class,
+                WebRabbitAmqpConfig.class,
+                SpringBatchConfig.class,
+                WebQuartzConfig.class,
+                WebElasticsearchConfig.class,
+                DubboConsumerConfig.class,
+                DubboProviderConfig.class};
     }
 
     @Override
