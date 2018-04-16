@@ -28,12 +28,12 @@ import java.util.concurrent.TimeUnit;
 /**
  * 基于RestTemplate的http访问工具类
  */
-@Component
 public class RestHttpClient {
     private static RestTemplate restTemplate;
 
-    @PostConstruct
-    private void init(){
+    private static HttpTemplate httpTemplate;
+
+    static{
         // 长连接保持30秒
         PoolingHttpClientConnectionManager pollingConnectionManager = new PoolingHttpClientConnectionManager(30, TimeUnit.SECONDS);
         // 总连接数
@@ -76,16 +76,18 @@ public class RestHttpClient {
         messageConverters.add(new MappingJackson2XmlHttpMessageConverter());
         messageConverters.add(new MappingJackson2HttpMessageConverter());
 
-        restTemplate = new RestTemplate(messageConverters);
+        /*restTemplate = new RestTemplate(messageConverters);
         restTemplate.setRequestFactory(clientHttpRequestFactory);
-        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
+        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());*/
+
+        httpTemplate = new HttpTemplate(messageConverters);
+        httpTemplate.setRequestFactory(clientHttpRequestFactory);
+        httpTemplate.setErrorHandler(new DefaultResponseErrorHandler());
     }
 
-    private RestHttpClient() {
+    private RestHttpClient(){}
 
-    }
-
-    public static RestTemplate getClient() {
-        return restTemplate;
+    public static HttpTemplate getClient() {
+        return httpTemplate;
     }
 }

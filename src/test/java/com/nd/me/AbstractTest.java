@@ -1,8 +1,6 @@
 package com.nd.me;
 
-import com.nd.me.config.AppConfig;
-import com.nd.me.config.WebRedisConfig;
-import com.nd.me.config.WebMvcConfig;
+import com.nd.me.config.*;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,7 +12,17 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebMvcConfig.class, WebRedisConfig.class})
+@ContextConfiguration(classes = {AppConfig.class,
+        WebRedisConfig.class,
+        WebSecurityConfig.class,
+        WebMybatisConfig.class,
+        WebMongoConfig.class,
+        WebRabbitAmqpConfig.class,
+        SpringBatchConfig.class,
+        WebQuartzConfig.class,
+        WebElasticsearchConfig.class,
+        DubboConsumerConfig.class,
+        DubboProviderConfig.class})
 @Ignore
 public class AbstractTest {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());

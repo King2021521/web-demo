@@ -38,4 +38,9 @@ public class UserInfoServiceImpl implements UserInfoService{
     public List<User> getAllUserInfo(int offset,int limit) {
         return userInfoDao.findAll(offset, limit);
     }
+
+    @Override
+    public Integer getType() {
+        return 1;
+    }
 }

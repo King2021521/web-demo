@@ -11,4 +11,5 @@ public interface UserInfoService {
     void insert(User record);
     User getUserInfo(String id);
     List<User> getAllUserInfo(int offset,int limit);
+    Integer getType();
 }

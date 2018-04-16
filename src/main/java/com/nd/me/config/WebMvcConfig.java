@@ -1,5 +1,6 @@
 package com.nd.me.config;
 
+import com.nd.me.component.http.RestHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -41,17 +42,4 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         configurer.enable();
     }
 
-    @Bean
-    public RestTemplate restTemplate(){
-        List<HttpMessageConverter<?>> converters = new ArrayList<>();
-        converters.add(messageConverter());
-        RestTemplate restTemplate = new RestTemplate(converters);
-        return restTemplate;
-    }
-
-    @Bean
-    public MappingJackson2HttpMessageConverter messageConverter(){
-        MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
-        return messageConverter;
-    }
 }
