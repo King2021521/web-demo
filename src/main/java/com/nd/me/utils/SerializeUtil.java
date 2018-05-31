@@ -1,4 +1,4 @@
-package com.nd.me.util;
+package com.nd.me.utils;
 
 import java.io.IOException;
 

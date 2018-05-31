@@ -7,7 +7,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
-@ComponentScan(basePackages = { "com.nd.me.component", "com.nd.me.service","com.nd.me.util"})
+@ComponentScan(basePackages = { "com.nd.me.component", "com.nd.me.service", "com.nd.me.utils"})
 @PropertySource(value = {"classpath:application.properties"})
 @EnableAsync
 @EnableScheduling

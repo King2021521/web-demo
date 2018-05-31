@@ -3,7 +3,7 @@ package com.nd.me.component.redis;
 import java.util.List;
 import java.util.Map;
 
-import com.nd.me.util.SerializeUtil;
+import com.nd.me.utils.SerializeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
