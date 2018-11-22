@@ -32,7 +32,7 @@
     <spring.version>4.3.2.RELEASE</spring.version>
     <spring.security.version>3.2.6.RELEASE</spring.security.version>
     <atomikos.version>3.9.1</atomikos.version>
-    <fasterxml.jackson.version>2.6.3</fasterxml.jackson.version>
+    <fasterxml.jackson.version>2.8.11.1</fasterxml.jackson.version>
     <mysql.connector.version>5.1.30.nd.1.7</mysql.connector.version>
     <spring.data.mongodb.version>1.9.2.RELEASE</spring.data.mongodb.version>
     <mybatis.generator.version>1.3.2</mybatis.generator.version>
@@ -413,7 +413,7 @@
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.3.3</version>
+      <version>4.3.6</version>
     </dependency>
 
     <!-- BeanUtil -->
