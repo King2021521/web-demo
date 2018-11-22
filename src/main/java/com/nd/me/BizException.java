@@ -1,5 +1,6 @@
 package com.nd.me;
 
+import com.nd.me.exception.BaseBizException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -7,10 +8,11 @@ import org.springframework.http.HttpStatus;
 /**
  * Created by Administrator on 2017/3/23 0023.
  */
-public class BizException extends RuntimeException {
+public class BizException extends BaseBizException{
     private static final long serialVersionUID = 1L;
 
     private String code;
+
     private HttpStatus status;
 
 
@@ -25,7 +27,7 @@ public class BizException extends RuntimeException {
      * @param message
      */
     public BizException(HttpStatus status, String code, String message) {
-        super(message);
+        super(code,message,status);
         this.code = code;
         this.status = status;
         logger.error("Request Faile,HttpCode：" + status.toString() + ",Code:" + code, this);

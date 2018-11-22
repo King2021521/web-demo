@@ -3,6 +3,7 @@ package com.nd.me.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.nd.me.BizException;
 import com.nd.me.BizErrorCode;
+import com.nd.me.config.annotation.LoginIgnore;
 import com.nd.me.entity.User;
 import com.nd.me.entity.UserXml;
 import com.nd.me.service.UserInfoService;
@@ -24,7 +25,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/${app.map.ver}/api/userInfo")
-public class UserController {
+public class UserController extends AbstractController{
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
@@ -53,14 +54,13 @@ public class UserController {
      * @return
      * @throws Exception
      */
+    @LoginIgnore
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {"application/json"})
     public Object testJwt(HttpServletRequest request) {
-        try {
-            return JwtManager.validateToken(request.getHeader("Authorization"));
-        } catch (Exception e) {
-            return new BizException(BizErrorCode.UNAUTHORIZED);
-        }
-
+        JSONObject resp = new JSONObject();
+        resp.put("result","success");
+        resp.put("timestamp",System.currentTimeMillis());
+        return resp;
     }
 
     /**

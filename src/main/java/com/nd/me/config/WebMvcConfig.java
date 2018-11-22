@@ -70,9 +70,14 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration addInterceptor = registry.addInterceptor(new AuthCheckInterceptor());
         addInterceptor.excludePathPatterns("/test");
-        addInterceptor.addPathPatterns("/**");
+        addInterceptor.addPathPatterns("/**/api/**");
         super.addInterceptors(registry);
     }
+
+    /*@Bean
+    public HandlerExceptionResolver handlerExceptionResolver(){
+        return new HandlerExceptionResolverComposite();
+    }*/
 
     @Bean
     public JexlEngine engineFactory(){

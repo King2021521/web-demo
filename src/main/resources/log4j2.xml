@@ -47,9 +47,18 @@
 			<DefaultRolloverStrategy max="1000" fileIndex="max" min="1" compressionLevel="0" />
 		   <RegexFilter regex="ext.*" onMatch="ACCEPT" onMismatch="DENY"/>
 		</RollingRandomAccessFile>
+
+		<NoSql name="mongoAppender" bufferSize="10"> <!--建议bufferSize配置,减少频繁写操作。 -->
+			<MongoDb databaseName="mongo" collectionName="log4j2" server="127.0.0.1" port="27017"/>
+		</NoSql>
 	</Appenders>
 	<Loggers>
+		<Logger name="mongologger" level="debug">
+			<AppenderRef ref="mongoAppender"/>
+		</Logger>
+
 		<asyncRoot level="info" includeLocation="true">
+			<AppenderRef ref="mongoAppender" level="INFO"/>
 			<AppenderRef ref="Console"/>
 			<AppenderRef ref="debugRollingRandomAccessFile"/>
 			<AppenderRef ref="internalErrorRollingRandomAccessFile" level="ERROR"/>
